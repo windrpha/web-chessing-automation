@@ -1,0 +1,30 @@
+url = "http://dev-chessing-loadbalancer-1478619929.us-east-2.elb.amazonaws.com"
+
+username = "AutomationTester"
+password = "password1234"
+username_email = "automationtester@yopmail.com"
+
+username1 = "tester_10"
+password1 = "carpintero1234"
+username1_email = "tester_10@yopmail.com"
+
+signUpMessage = "Sign Up to Chessing"
+invalidPassword = "Password did not conform with policy: Password not long enough"
+emptyPassword = "The password is not valid"
+emptyEmail = "The email is not valid"
+usernameExists = "PreSignUp failed with error Username is already registered. Please use another one."
+usernameNoLongEnough = "PreSignUp failed with error Username should be longer than 2 characters."
+usernameNoSpecialCharacters = "PreSignUp failed with error Username should contain only letters and numbers."
+usernameMoreThan25Characters = "PreSignUp failed with error Username should be shorter than 26 characters."
+usernameSpaceError = "Value at 'username' failed to satisfy constraint"
+emailExists = "PreSignUp failed with error Email is already registered. Please use another one."
+passwordNoNumeric = "Password did not conform with policy: Password must have numeric characters"
+passwordNoEnoughLong = "Password did not conform with policy: Password not long enough"
+passwordNoLowerCases = "Password did not conform with policy: Password must have lowercase characters"
+
+forgotPasswordMessage = "Forgot your password"
+emailAddressInvalid = "The email address is not valid"
+invalidCode = "The code is not valid for this username"
+codeRequestedMessage = "You can request a new code in"
+
+abortMessage = "seconds to abort if you don't move"
