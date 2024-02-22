@@ -1,6 +1,7 @@
 import time
 import unittest
 from selenium import webdriver
+from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -38,7 +39,7 @@ class GamePremoves(unittest.TestCase):
         self.driverChrome = webdriver.Chrome()
         self.driverChrome.get(constants.url)
 
-        self.driverFirefox = webdriver.Chrome()
+        self.driverFirefox = webdriver.Firefox()
         self.driverFirefox.get(constants.url)
 
         login(self.driverChrome, constants.username, constants.password)
@@ -73,36 +74,38 @@ class GamePremoves(unittest.TestCase):
 
     def testAbortIfBlackPlayerDoesNotMove(self):
 
-        element = WebDriverWait(self.driverChrome, 10).until(
-            EC.presence_of_element_located(
-                (By.XPATH, "(//div[contains(@class,'text-white font-bold text-sm')][normalize-space()])[1]")))
-
-        if element.text == constants.username:
-            print('white driver chrome')
+        try:
+            WebDriverWait(self.driverChrome, 10).until(
+                EC.presence_of_element_located(
+                    (By.XPATH, "//div[contains(@id,'game-board-countdown-for-move')]")))
             whiteColor = self.driverChrome
             blackColor = self.driverFirefox
-        else:
-            print('black driver chrome')
+            print('white driver chrome')
+        except TimeoutException as e:
+            WebDriverWait(self.driverFirefox, 10).until(
+                EC.presence_of_element_located(
+                    (By.XPATH, "//div[contains(@id,'game-board-countdown-for-move')]")))
             whiteColor = self.driverFirefox
             blackColor = self.driverChrome
+            print('black driver chrome')
 
-        # abort_message = WebDriverWait(whiteColor, 20).until(
-        #     EC.presence_of_element_located(
-        #         (By.XPATH, "//div[contains(@class,'flex justify-center items-center text-xs text-negative-color')]"))
-        # )
-        #
-        # print(abort_message.text)
-        #
-        # assert constants.abortMessage in abort_message.text
-
-        perform_move(whiteColor, "//div[contains(@style, 'P.svg') and contains(@style, 'top: 75%; left: 50%;')]")
-        perform_move(whiteColor, "(//div[contains(@class,'relative')])[44]")
+        perform_move(whiteColor, "//div[contains(@id,'game-board-P-e2')]")
+        perform_move(whiteColor, "//div[contains(@id,'game-board-e4')]")
 
         abort_message = WebDriverWait(blackColor, 10).until(
             EC.presence_of_element_located(
-                (By.XPATH, "//div[@class='flex justify-center items-center text-xs text-negative-color']"))
+                (By.XPATH, "//div[contains(@id,'game-board-countdown-for-move')]"))
         )
         assert constants.abortMessage in abort_message.text
+
+        end_game_message_chrome = WebDriverWait(self.driverChrome, 20).until(
+            EC.presence_of_element_located((By.XPATH, "//div[normalize-space()='abort']"))
+        )
+        end_game_message_firefox = WebDriverWait(self.driverFirefox, 20).until(
+            EC.presence_of_element_located((By.XPATH, "//div[normalize-space()='abort']"))
+        )
+        assert end_game_message_chrome.text == "ABORT"
+        assert end_game_message_firefox.text == "ABORT"
 
     def tearDown(self):
         self.driverChrome.quit()
