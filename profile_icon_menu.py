@@ -28,12 +28,11 @@ class LoginLogout(unittest.TestCase):
         login_button.click()
 
     def testLoginLogout(self):
-        # TODO - UPDATE TO USE CHESSING
-        WebDriverWait(self.driver, 10).until(EC.title_contains("Create"))
 
-        # TODO - Verify the title of the page contains "Welcome back to chessing"
+        WebDriverWait(self.driver, 10).until(EC.title_contains(constants.appTitle))
+
         WebDriverWait(self.driver, 1).until(
-            lambda d: d.find_element(By.TAG_NAME, "h1").text == "Welcome back to Chessings",
+            lambda d: d.find_element(By.TAG_NAME, "h1").text == constants.welcomeMessage,
             "The word 'Welcome back to Chessings' was not found in the h1 element."
         )
 
@@ -48,7 +47,7 @@ class LoginLogout(unittest.TestCase):
         logout_button.click()
 
         WebDriverWait(self.driver, 1).until(
-            lambda d: d.find_element(By.TAG_NAME, "h1").text == "Welcome back to Chessings",
+            lambda d: d.find_element(By.TAG_NAME, "h1").text == constants.welcomeMessage,
             "The word 'Welcome back to Chessings' was not found in the h1 element."
         )
 

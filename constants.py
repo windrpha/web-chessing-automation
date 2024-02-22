@@ -8,6 +8,9 @@ username1 = "tester_10"
 password1 = "carpintero1234"
 username1_email = "tester_10@yopmail.com"
 
+appTitle = "Chessing"
+welcomeMessage = "Welcome back to Chessing"
+
 signUpMessage = "Join Chessing"
 signUpButtonWording = "Sign Up"
 invalidPassword = "Password did not conform with policy: Password not long enough"
