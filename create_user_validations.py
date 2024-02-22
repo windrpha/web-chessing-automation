@@ -18,9 +18,8 @@ class CreateUserTest(unittest.TestCase):
         register_button.click()
 
     def testValidateWordings(self):
-        #  TODO - Verify the title of the page contains correct message
-        # WebDriverWait(self.driverChrome, 10).until(
-        #     EC.presence_of_element_located((By.XPATH, "//h1[normalize-space()='" + constants.signUpMessage + "']")))
+        WebDriverWait(self.driverChrome, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//h1[normalize-space()='" + constants.signUpMessage + "']")))
 
         username_input = WebDriverWait(self.driverChrome, 10).until(
             EC.presence_of_element_located((By.XPATH, "//input[@id='usuario']")))
@@ -48,15 +47,15 @@ class CreateUserTest(unittest.TestCase):
             EC.presence_of_element_located((By.XPATH, "(//input[@id='usuario'])[1]")))
         username_input.send_keys(constants.username)
         sign_up_button = WebDriverWait(self.driverChrome, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Signup']")))
+            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='" + constants.signUpButtonWording + "']")))
 
         sign_up_button.click()
 
         WebDriverWait(self.driverChrome, 10).until(
-            EC.presence_of_element_located((By.XPATH, "//p[normalize-space()='The email is not valid']")))
+            EC.presence_of_element_located((By.XPATH, "//p[normalize-space()='" + constants.emptyPassword + "']")))
 
         WebDriverWait(self.driverChrome, 10).until(
-            EC.presence_of_element_located((By.XPATH, "//p[normalize-space()='The password is not valid']")))
+            EC.presence_of_element_located((By.XPATH, "//p[normalize-space()='" + constants.emptyEmail + "']")))
 
     def testEmptyPassword(self):
         username_input = WebDriverWait(self.driverChrome, 10).until(
@@ -68,7 +67,7 @@ class CreateUserTest(unittest.TestCase):
         mail_input.send_keys(constants.username_email)
 
         sign_up_button = WebDriverWait(self.driverChrome, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Signup']")))
+            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='" + constants.signUpButtonWording + "']")))
 
         sign_up_button.click()
 
@@ -85,7 +84,9 @@ class CreateUserTest(unittest.TestCase):
         password_input.send_keys(constants.password)
 
         sign_up_button = WebDriverWait(self.driverChrome, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Signup']")))
+            EC.element_to_be_clickable(
+                (By.XPATH, "//button[normalize-space()='" + constants.signUpButtonWording + "']")))
+
         sign_up_button.click()
 
         WebDriverWait(self.driverChrome, 10).until(
@@ -105,7 +106,8 @@ class CreateUserTest(unittest.TestCase):
         mail_input.send_keys("email_no_exist@yopmail.com")
 
         sign_up_button = WebDriverWait(self.driverChrome, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Signup']")))
+            EC.element_to_be_clickable(
+                (By.XPATH, "//button[normalize-space()='" + constants.signUpButtonWording + "']")))
         sign_up_button.click()
 
         WebDriverWait(self.driverChrome, 10).until(
@@ -125,7 +127,8 @@ class CreateUserTest(unittest.TestCase):
         mail_input.send_keys(constants.username_email)
 
         sign_up_button = WebDriverWait(self.driverChrome, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Signup']")))
+            EC.element_to_be_clickable(
+                (By.XPATH, "//button[normalize-space()='" + constants.signUpButtonWording + "']")))
         sign_up_button.click()
 
         error_message = WebDriverWait(self.driverChrome, 10).until(
@@ -147,7 +150,8 @@ class CreateUserTest(unittest.TestCase):
         mail_input.send_keys(constants.username_email)
 
         sign_up_button = WebDriverWait(self.driverChrome, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Signup']")))
+            EC.element_to_be_clickable(
+                (By.XPATH, "//button[normalize-space()='" + constants.signUpButtonWording + "']")))
         sign_up_button.click()
 
         WebDriverWait(self.driverChrome, 10).until(
@@ -168,7 +172,8 @@ class CreateUserTest(unittest.TestCase):
         mail_input.send_keys("email_no_exist1@yopmail.com")
 
         sign_up_button = WebDriverWait(self.driverChrome, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Signup']")))
+            EC.element_to_be_clickable(
+                (By.XPATH, "//button[normalize-space()='" + constants.signUpButtonWording + "']")))
         sign_up_button.click()
 
         WebDriverWait(self.driverChrome, 10).until(
@@ -189,7 +194,8 @@ class CreateUserTest(unittest.TestCase):
         mail_input.send_keys("email_no_exist@yopmail.com")
 
         sign_up_button = WebDriverWait(self.driverChrome, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Signup']")))
+            EC.element_to_be_clickable(
+                (By.XPATH, "//button[normalize-space()='" + constants.signUpButtonWording + "']")))
         sign_up_button.click()
 
         WebDriverWait(self.driverChrome, 10).until(
@@ -210,7 +216,8 @@ class CreateUserTest(unittest.TestCase):
         mail_input.send_keys(constants.username_email)
 
         sign_up_button = WebDriverWait(self.driverChrome, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Signup']")))
+            EC.element_to_be_clickable(
+                (By.XPATH, "//button[normalize-space()='" + constants.signUpButtonWording + "']")))
         sign_up_button.click()
 
         WebDriverWait(self.driverChrome, 10).until(
@@ -231,7 +238,8 @@ class CreateUserTest(unittest.TestCase):
         mail_input.send_keys("valid_email_" + number + "@yopmail.com")
 
         sign_up_button = WebDriverWait(self.driverChrome, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Signup']")))
+            EC.element_to_be_clickable(
+                (By.XPATH, "//button[normalize-space()='" + constants.signUpButtonWording + "']")))
         sign_up_button.click()
 
         WebDriverWait(self.driverChrome, 10).until(
@@ -252,7 +260,8 @@ class CreateUserTest(unittest.TestCase):
         mail_input.send_keys("valid_email_" + number + "@yopmail.com")
 
         sign_up_button = WebDriverWait(self.driverChrome, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Signup']")))
+            EC.element_to_be_clickable(
+                (By.XPATH, "//button[normalize-space()='" + constants.signUpButtonWording + "']")))
         sign_up_button.click()
 
         WebDriverWait(self.driverChrome, 10).until(
@@ -274,7 +283,8 @@ class CreateUserTest(unittest.TestCase):
         mail_input.send_keys("valid_email_" + number + "@yopmail.com")
 
         sign_up_button = WebDriverWait(self.driverChrome, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Signup']")))
+            EC.element_to_be_clickable(
+                (By.XPATH, "//button[normalize-space()='" + constants.signUpButtonWording + "']")))
         sign_up_button.click()
 
         WebDriverWait(self.driverChrome, 10).until(
