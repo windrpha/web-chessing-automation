@@ -42,3 +42,10 @@ codeRequestedMessage = "You can request a new code in"
 abortMessage = "seconds to abort if you don't move"
 
 verifyEmailMessage = "Verify your email"
+
+endCardResignButton = "Rendirse"
+endCardResignLossMessage = "you lost"
+endCardResignWinMessage = "you won"
+endCardButtonRematchName = "Rematch"
+rematchAcceptButton = "Accept"
+rematchDeclineButton = "Decline"
