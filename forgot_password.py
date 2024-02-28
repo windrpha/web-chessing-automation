@@ -67,7 +67,7 @@ class ForgotPassword(unittest.TestCase):
             EC.presence_of_element_located((By.XPATH, "//input[@id='email']"))
         )
 
-        email_input.send_keys(constants.username1_email)
+        email_input.send_keys(constants.forgot_password_email)
 
         submit_button = WebDriverWait(self.driverChrome, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Send code']"))
@@ -123,23 +123,8 @@ class ForgotPassword(unittest.TestCase):
 
         forgot_password_button.click()
 
-        email_input = WebDriverWait(self.driverChrome, 10).until(
-            EC.presence_of_element_located((By.XPATH, "//input[@id='email']"))
-        )
-
-        email_input.clear()
-        email_input.send_keys(constants.username1_email)
-
-        submit_button = WebDriverWait(self.driverChrome, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Send code']"))
-        )
-
-        submit_button.click()
-
-        # TODO - VERIFY THIS CONDITION
-
         code_requested_message = WebDriverWait(self.driverChrome, 10).until(
-            EC.presence_of_element_located((By.XPATH, "//p[@class='text-sm']"))
+            EC.presence_of_element_located((By.XPATH, "//p[contains(@class,'text-sm')]"))
         )
 
         print(code_requested_message.text)

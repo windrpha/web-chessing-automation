@@ -12,6 +12,8 @@ pendingUser = "PendingAutomationUser"
 pendingPassword = "password1234"
 pendingUserEmail = "pendingautomationuser@yopmail.com"
 
+forgot_password_email = "amanda@yopmail.com"
+
 appTitle = "Chessing"
 welcomeMessage = "Welcome back to Chessing"
 
