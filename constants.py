@@ -8,6 +8,10 @@ username1 = "tester_10"
 password1 = "carpintero1234"
 username1_email = "tester_10@yopmail.com"
 
+pendingUser = "PendingAutomationUser"
+pendingPassword = "password1234"
+pendingUserEmail = "pendingautomationuser@yopmail.com"
+
 appTitle = "Chessing"
 welcomeMessage = "Welcome back to Chessing"
 
@@ -34,3 +38,5 @@ invalidCode = "The code is not valid for this username"
 codeRequestedMessage = "You can request a new code in"
 
 abortMessage = "seconds to abort if you don't move"
+
+verifyEmailMessage = "Verify your email"

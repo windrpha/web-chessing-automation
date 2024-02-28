@@ -1,9 +1,8 @@
 import time
 import unittest
-import unittest
 from selenium import webdriver
 from selenium.common import TimeoutException
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -42,6 +41,11 @@ def perform_secondary_click(driver, xpath):
     actions.move_to_element(element).context_click().perform()
 
 
+def perform_escape_click(driver):
+    actions = ActionChains(driver)
+    actions.send_keys(Keys.ESCAPE).perform()
+
+
 class LoginLogout(unittest.TestCase):
 
     def setUp(self):
@@ -64,7 +68,7 @@ class LoginLogout(unittest.TestCase):
         play_chrome.click()
         play_firefox.click()
 
-    def testLoginLogout(self):
+    def testPreMovesBeforePromotion(self):
         try:
             WebDriverWait(self.driverChrome, 10).until(
                 EC.presence_of_element_located(
@@ -83,15 +87,16 @@ class LoginLogout(unittest.TestCase):
         # e2e4
         perform_move(whiteColor, "//div[contains(@id,'game-board-P-e2')]")
         perform_move(whiteColor, "//div[contains(@id,'game-board-e4')]")
-        time.sleep(2)
+        time.sleep(1)
 
         # d7d5
         perform_move(blackColor, "//div[contains(@id,'game-board-p-d7')]")
         perform_move(blackColor, "//div[contains(@id,'game-board-d5')]")
-
+        time.sleep(1)
         # b2b4
         perform_move(whiteColor, "//div[contains(@id,'game-board-P-b2')]")
         perform_move(whiteColor, "//div[contains(@id,'game-board-b4')]")
+        time.sleep(1)
 
         # pre-moves starts here
         perform_move(whiteColor, "//div[contains(@id,'game-board-P-b4')]")
@@ -105,10 +110,12 @@ class LoginLogout(unittest.TestCase):
 
         perform_move(whiteColor, "//div[contains(@id,'game-board-P-b7')]")
 
-        # check possible moves
-        # we need ids for the promotion table
+        perform_escape_click(whiteColor)
 
-        time.sleep(5)
+        # //validate game returns to normal state after pressing scape
+        WebDriverWait(whiteColor, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//div[@id='game-board-P-b4']"))
+        )
 
     def tearDown(self):
         self.driverChrome.quit()
