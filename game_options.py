@@ -63,6 +63,7 @@ def initial_board_moves(driver1, driver2):
     perform_move(whiteColor, "//div[contains(@id,'game-board-P-b2')]")
     perform_move(whiteColor, "//div[contains(@id,'game-board-b4')]")
     time.sleep(1)
+    return whiteColor, blackColor
 
 
 class GameOptions(unittest.TestCase):
@@ -164,7 +165,112 @@ class GameOptions(unittest.TestCase):
         decline_button.click()
 
         WebDriverWait(self.driverChrome, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "(//div[normalize-space()='Rematch'])[1]"))
+            EC.element_to_be_clickable((By.XPATH, "(//div[normalize-space()='"
+                                        + constants.endCardButtonRematchName + "'])[1]"))
+        )
+
+    def testDrawAccept(self):
+        white, black = initial_board_moves(self.driverChrome, self.driverFirefox)
+
+        # TODO TEST MAY FAILING DUE TO WORDING CHANGES
+        # THIS TEST IS GOING TO FAIL ONCE WORDING IS FIXED
+        draw_button = WebDriverWait(black, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "(//div[normalize-space()='"
+                                        + constants.drawButtonOffering + "'])[1]"))
+        )
+        draw_button.click()
+
+        accept_button = WebDriverWait(white, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "(//div[normalize-space()='"
+                                        + constants.drawButtonAccept + "'])[1]"))
+        )
+
+        # decline button
+        WebDriverWait(white, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "(//div[normalize-space()='"
+                                        + constants.drawButtonDecline + "'])[1]"))
+        )
+
+        accept_button.click()
+
+        draw_message_black = WebDriverWait(black, 10).until(
+            EC.presence_of_element_located(
+                (By.XPATH, "(//div[normalize-space()='draw'])[1]"))
+        )
+
+        draw_message_white = WebDriverWait(white, 10).until(
+            EC.presence_of_element_located(
+                (By.XPATH, "(//div[normalize-space()='draw'])[1]"))
+        )
+
+        assert constants.endCardDrawMessage in draw_message_black.text
+        assert constants.endCardDrawMessage in draw_message_white.text
+
+    # TODO - WAITING FOR THE FIX TO RUN THIS TEST
+    def testDrawDeclineByClickingDeclineButton(self):
+        white, black = initial_board_moves(self.driverChrome, self.driverFirefox)
+        draw_button = WebDriverWait(black, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "(//div[normalize-space()='" + constants.drawButtonOffering + "'])[1]"))
+        )
+        draw_button.click()
+
+        # review label from user asking for a draw
+        WebDriverWait(black, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "(// div[normalize-space() = '"
+                                        + constants.drawButtonWaitingResponse + "'])[1]"))
+        )
+
+        WebDriverWait(white, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "(//div[normalize-space()='" + constants.drawButtonAccept + "'])[1]"))
+        )
+
+        decline_button = WebDriverWait(white, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "(//div[normalize-space()='" + constants.drawButtonDecline + "'])[1]"))
+        )
+
+        decline_button.click()
+
+        WebDriverWait(black, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "(//div[normalize-space()='" + constants.drawButtonOffering + "'])[1]"))
+        )
+        WebDriverWait(white, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "(//div[normalize-space()='" + constants.drawButtonOffering + "'])[1]"))
+        )
+
+    def testDrawDeclineByAnotherPieceMove(self):
+        white, black = initial_board_moves(self.driverChrome, self.driverFirefox)
+        # offers draw
+        draw_button = WebDriverWait(white, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "(//div[normalize-space()='"
+                                        + constants.drawButtonOffering + "'])[1]"))
+        )
+        draw_button.click()
+
+        # check if draw menu is displayed
+        WebDriverWait(black, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "(//div[normalize-space()='"
+                                        + constants.drawButtonDecline + "'])[1]"))
+        )
+        WebDriverWait(black, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "(//div[normalize-space()='"
+                                        + constants.drawButtonAccept + "'])[1]"))
+        )
+
+        # moves a piece
+        perform_move(black, "//div[contains(@id,'game-board-p-e7')]")
+        perform_move(black, "//div[contains(@id,'game-board-e5')]")
+
+        WebDriverWait(black, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "(//div[normalize-space()='"
+                                        + constants.drawButtonOffering + "'])[1]"))
+        )
+        WebDriverWait(white, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "(//div[normalize-space()='"
+                                        + constants.drawButtonOffering + "'])[1]"))
         )
 
     def tearDown(self):
