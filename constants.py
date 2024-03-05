@@ -48,6 +48,8 @@ endCardResignLossMessage = "you lost"
 endCardResignWinMessage = "you won"
 endCardButtonRematchName = "Rematch"
 endCardDrawMessage = "DRAW"
+endCardLossMessage = "you lost"
+endCardWinMessage = "you won"
 rematchAcceptButton = "Accept"
 rematchDeclineButton = "Decline"
 
