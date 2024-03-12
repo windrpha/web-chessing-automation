@@ -4,9 +4,9 @@ username = "AutomationTester"
 password = "password1234"
 username_email = "automationtester@yopmail.com"
 
-username1 = "tester_10"
-password1 = "carpintero1234"
-username1_email = "tester_10@yopmail.com"
+username1 = "AutomationTester1"
+password1 = "password1234"
+username1_email = "automationtester1@yopmail.com"
 
 pendingUser = "PendingAutomationUser"
 pendingPassword = "password1234"
