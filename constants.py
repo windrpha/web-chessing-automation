@@ -1,4 +1,4 @@
-url = "http://dev-chessing-loadbalancer-1478619929.us-east-2.elb.amazonaws.com"
+url = "http://spot-application-lb-198598115.us-east-1.elb.amazonaws.com"
 
 username = "AutomationTester"
 password = "password1234"
@@ -8,11 +8,11 @@ username1 = "AutomationTester1"
 password1 = "password1234"
 username1_email = "automationtester1@yopmail.com"
 
-pendingUser = "PendingAutomationUser"
+pendingUser = "PendingConfAutomationUser"
 pendingPassword = "password1234"
 pendingUserEmail = "pendingautomationuser@yopmail.com"
 
-forgot_password_email = "amanda@yopmail.com"
+forgot_password_email = "automationtester1@yopmail.com"
 
 appTitle = "Chessing"
 welcomeMessage = "Welcome back to Chessing"

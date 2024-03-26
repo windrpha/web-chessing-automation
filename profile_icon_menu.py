@@ -46,7 +46,7 @@ class LoginLogout(unittest.TestCase):
         )
         logout_button.click()
 
-        WebDriverWait(self.driver, 1).until(
+        WebDriverWait(self.driver, 10).until(
             lambda d: d.find_element(By.TAG_NAME, "h1").text == constants.welcomeMessage,
             "The word 'Welcome back to Chessings' was not found in the h1 element."
         )
