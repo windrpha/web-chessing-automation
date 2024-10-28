@@ -1,4 +1,4 @@
-url = "http://spot-application-lb-198598115.us-east-1.elb.amazonaws.com"
+url = "http://chessi-devf7-q5ik5ufrrtfj-1609169606.us-east-2.elb.amazonaws.com"
 
 username = "AutomationTester"
 password = "password1234"

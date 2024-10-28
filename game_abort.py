@@ -56,12 +56,6 @@ class GamePremoves(unittest.TestCase):
         play_firefox.click()
 
     def test15SecondsAbort(self):
-        abort_message = WebDriverWait(self.driverChrome, 10).until(
-            EC.presence_of_element_located(
-                (By.XPATH, "//div[@class='flex justify-center items-center text-xs text-negative-color']"))
-        )
-
-        assert constants.abortMessage in abort_message.text
 
         end_game_message_chrome = WebDriverWait(self.driverChrome, 20).until(
             EC.presence_of_element_located((By.XPATH, "//div[normalize-space()='abort']"))

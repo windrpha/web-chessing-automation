@@ -101,61 +101,6 @@ class GameMoves(unittest.TestCase):
                                             + constants.endCardWinMessage + "'])[1]"))
         )
 
-    # def testStalemate(self):
-    #     white, black = player_turn.player_turn(self.driverChrome, self.driverFirefox)
-    #
-    #     # Initial moves to setup the scenario
-    #     move.perform_move(white, "//div[contains(@id,'game-board-P-e2')]")
-    #     move.perform_move(white, "//div[contains(@id,'game-board-e3')]")
-    #     time.sleep(1)
-    #
-    #     move.perform_move(black, "//div[contains(@id,'game-board-p-a7')]")
-    #     move.perform_move(black, "//div[contains(@id,'game-board-a5')]")
-    #     time.sleep(1)
-    #
-    #     move.perform_move(white, "//div[contains(@id,'game-board-Q-d1')]")
-    #     move.perform_move(white, "//div[contains(@id,'game-board-h5')]")
-    #     time.sleep(1)
-    #
-    #     move.perform_move(black, "//div[contains(@id,'game-board-r-a8')]")
-    #     move.perform_move(black, "//div[contains(@id,'game-board-a6')]")
-    #     time.sleep(1)
-    #
-    #     move.perform_move(white, "//div[contains(@id,'game-board-Q-h5')]")
-    #     move.perform_move(white, "//div[contains(@id,'game-board-a5')]")
-    #     time.sleep(1)
-    #
-    #     move.perform_move(black, "//div[contains(@id,'game-board-p-h7')]")
-    #     move.perform_move(black, "//div[contains(@id,'game-board-h5')]")
-    #     time.sleep(1)
-    #
-    #     move.perform_move(white, "//div[contains(@id,'game-board-P-h2')]")
-    #     move.perform_move(white, "//div[contains(@id,'game-board-h4')]")
-    #     time.sleep(1)
-    #
-    #     move.perform_move(black, "//div[contains(@id,'game-board-k-e8')]")
-    #     move.perform_move(black, "//div[contains(@id,'game-board-f7')]")
-    #     time.sleep(1)
-    #
-    #     move.perform_move(white, "//div[contains(@id,'game-board-P-g2')]")
-    #     move.perform_move(white, "//div[contains(@id,'game-board-g4')]")
-    #     time.sleep(1)
-    #
-    #     # The final move that leads to stalemate
-    #     move.perform_move(black, "//div[contains(@id,'game-board-n-f7')]")
-    #     move.perform_move(black, "//div[contains(@id,'game-board-g6')]")
-    #     time.sleep(1)
-    #
-    #     # Check for stalemate message or condition
-    #     WebDriverWait(white, 10).until(
-    #         EC.presence_of_element_located((By.XPATH, "(//div[normalize-space()='"
-    #                                         + constants.endCardStalemateMessage + "'])[1]"))
-    #     )
-    #     WebDriverWait(black, 10).until(
-    #         EC.presence_of_element_located((By.XPATH, "(//div[normalize-space()='"
-    #                                         + constants.endCardStalemateMessage + "'])[1]"))
-    #     )
-
     def tearDown(self):
         self.driverChrome.quit()
         self.driverFirefox.quit()
